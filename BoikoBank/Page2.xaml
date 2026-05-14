@@ -1,9 +1,44 @@
 ﻿<Page x:Class="BoikoBank.Page2"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Background="White"
-      Title="Page2">
-    <Grid>
-        <TextBlock Text="Страница 2 (Добавление)" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+      Title="Список клиентов">
+
+    <Grid Background="#F4F4F4">
+        <DockPanel Margin="20">
+            <TextBlock Text="Управление клиентами" DockPanel.Dock="Top" 
+                       FontSize="22" FontWeight="Bold" Margin="0,0,0,15"/>
+
+            <DataGrid x:Name="ClientsGrid"
+                      ItemsSource="{Binding CombinedList}" 
+                      SelectedItem="{Binding SelectedClient}" 
+                      AutoGenerateColumns="False" 
+                      IsReadOnly="True" 
+                      SelectionMode="Single"
+                      Background="White">
+
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Добавить нового" Command="{Binding AddCommand}"/>
+                        <Separator/>
+                        <MenuItem Header="Редактировать" 
+                                  Command="{Binding EditCommand}" 
+                                  CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
+                        <MenuItem Header="Удалить" 
+                                  Foreground="Red"
+                                  Command="{Binding DeleteCommand}" 
+                                  CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="*"/>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="*"/>
+                    <DataGridTextColumn Header="Баланс" Binding="{Binding Balance, StringFormat={}{0:N2} ₽}" Width="100"/>
+                    <DataGridTextColumn Header="Кредит" Binding="{Binding TotalAmount}" Width="100"/>
+                    <DataGridTextColumn Header="Оплачено" Binding="{Binding PaidAmount}" Width="100"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
     </Grid>
 </Page>

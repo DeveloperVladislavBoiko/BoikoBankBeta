@@ -1,13 +1,46 @@
 ﻿<Page x:Class="BoikoBank.Page1"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Background="Wheat"
-      Title="Page1">
-    <Grid>
-        <Grid.RowDefinitions> 
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <ListBox Grid.Row="0" Margin="5"/>
-        <TextBlock Text="Страница 1 (Список)" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+      Title="Все записи">
+
+    <Grid Background="#F4F4F4">
+        <DockPanel Margin="20">
+            <TextBlock Text="Сводная таблица клиентов и транзакций" DockPanel.Dock="Top" 
+                       FontSize="22" FontWeight="Bold" Margin="0,0,0,15"/>
+
+            <DataGrid x:Name="AllRecordsGrid"
+                      ItemsSource="{Binding CombinedList}" 
+                      SelectedItem="{Binding SelectedClient}" 
+                      AutoGenerateColumns="False" 
+                      IsReadOnly="True" 
+                      SelectionMode="Single"
+                      Background="White">
+
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Обновить данные" Command="{Binding NavigationCommand}" CommandParameter="Clients"/>
+                        <Separator/>
+                        <MenuItem Header="Редактировать запись" 
+                                  Command="{Binding EditCommand}" 
+                                  CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
+                        <MenuItem Header="Удалить запись" 
+                                  Foreground="Red"
+                                  Command="{Binding DeleteCommand}" 
+                                  CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="*"/>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="*"/>
+                    <DataGridTextColumn Header="Баланс" Binding="{Binding Balance, StringFormat={}{0:N2} ₽}" Width="100"/>
+
+                    <DataGridTextColumn Header="Сумма кредита" Binding="{Binding TotalAmount, StringFormat={}{0:N2} ₽}" Width="120"/>
+                    <DataGridTextColumn Header="Оплачено" Binding="{Binding PaidAmount, StringFormat={}{0:N2} ₽}" Width="100"/>
+                    <DataGridTextColumn Header="Дата договора" Binding="{Binding LoanDate}" Width="120"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
     </Grid>
 </Page>

@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       Title="Список клиентов">
 
-    <Grid Background="#F4F4F4">
+    <Grid  Background="#F4F4F4" >
         <DockPanel Margin="20">
             <TextBlock Text="Управление клиентами" DockPanel.Dock="Top" 
                        FontSize="22" FontWeight="Bold" Margin="0,0,0,15"/>

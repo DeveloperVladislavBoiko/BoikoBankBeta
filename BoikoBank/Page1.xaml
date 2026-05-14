@@ -4,16 +4,15 @@
       Title="Все записи">
 
     <Grid Background="#F4F4F4">
-        <DockPanel Margin="20">
+        <DockPanel Margin="20" >
             <TextBlock Text="Сводная таблица клиентов и транзакций" DockPanel.Dock="Top" 
                        FontSize="22" FontWeight="Bold" Margin="0,0,0,15"/>
 
             <DataGrid x:Name="AllRecordsGrid"
-                      ItemsSource="{Binding CombinedList}" 
+                      ItemsSource="{Binding Clients}" 
                       SelectedItem="{Binding SelectedClient}" 
                       AutoGenerateColumns="False" 
                       IsReadOnly="True" 
-                      SelectionMode="Single"
                       Background="White">
 
                 <DataGrid.ContextMenu>

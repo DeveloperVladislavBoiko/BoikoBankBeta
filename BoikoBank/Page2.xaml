@@ -34,7 +34,7 @@
                     <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
                     <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="*"/>
                     <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="*"/>
-                    <DataGridTextColumn Header="Баланс" Binding="{Binding Balance, StringFormat={}{0:N2} ₽}" Width="100"/>
+                    <DataGridTextColumn  Header="Баланс" Binding="{Binding Balance, StringFormat={}{0:N2} ₽}" Width="100"/>
                     <DataGridTextColumn Header="Кредит" Binding="{Binding TotalAmount}" Width="100"/>
                     <DataGridTextColumn Header="Оплачено" Binding="{Binding PaidAmount}" Width="100"/>
                 </DataGrid.Columns>

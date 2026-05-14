@@ -9,4 +9,4 @@ namespace BoikoBank
             InitializeComponent();
         }
     }
-}
+} 

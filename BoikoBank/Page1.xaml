@@ -4,7 +4,7 @@
       Background="Wheat"
       Title="Page1">
     <Grid>
-        <Grid.RowDefinitions>
+        <Grid.RowDefinitions> 
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <ListBox Grid.Row="0" Margin="5"/>

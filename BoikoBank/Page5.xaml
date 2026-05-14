@@ -9,7 +9,7 @@
       Background="WhiteSmoke"
       Title="Page5">
 
-    <Grid>
+    <Grid> 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>

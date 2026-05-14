@@ -29,7 +29,7 @@
                                   CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
                     </ContextMenu>
                 </DataGrid.ContextMenu>
-
+ 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
                     <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="*"/>

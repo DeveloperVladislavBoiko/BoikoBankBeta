@@ -4,7 +4,7 @@ namespace BoikoBank
 {
     public partial class Page1 : Page
     {
-        public Page1()
+        public Page1() 
         {
             InitializeComponent();
         }

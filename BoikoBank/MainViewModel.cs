@@ -22,7 +22,7 @@ namespace BoikoBank
         public ICommand NavigationCommand { get; }
 
         public MainViewModel()
-        {
+        { 
             CurrentPage = new Page1();
             NavigationCommand = new RelayCommand(p => Navigate(p?.ToString()));
         }

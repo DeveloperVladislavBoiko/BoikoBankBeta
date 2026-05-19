@@ -9,7 +9,7 @@
                        FontSize="22" FontWeight="Bold" Margin="0,0,0,15"/>
 
             <DataGrid x:Name="ClientsGrid"
-                      ItemsSource="{Binding CombinedList}" 
+                      ItemsSource="{Binding ClientList}" 
                       SelectedItem="{Binding SelectedClient}" 
                       AutoGenerateColumns="False" 
                       IsReadOnly="True" 
@@ -18,7 +18,9 @@
 
                 <DataGrid.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="Добавить нового" Command="{Binding AddCommand}"/>
+                        <MenuItem Header="Добавить" Command="{Binding AddClientCommand}" />
+                        <MenuItem Header="Редактировать" Command="{Binding EditClientCommand}" />
+                        <!--MenuItem Header="Добавить нового" Command="{Binding AddCommand}"/>
                         <Separator/>
                         <MenuItem Header="Редактировать" 
                                   Command="{Binding EditCommand}" 
@@ -26,7 +28,7 @@
                         <MenuItem Header="Удалить" 
                                   Foreground="Red"
                                   Command="{Binding DeleteCommand}" 
-                                  CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
+                                  CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/-->
                     </ContextMenu>
                 </DataGrid.ContextMenu>
  

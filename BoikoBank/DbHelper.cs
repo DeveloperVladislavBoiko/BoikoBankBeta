@@ -8,7 +8,6 @@ namespace BoikoBank
 {
     public static class DbHelper
     {
-        // Строка подключения (измените Database=boikobank, если название базы другое)
         private static string connStr = "Host=localhost;Username=postgres;Password=2005;Database=boikobank";
 
         private static readonly NpgsqlDataSource _ds = new NpgsqlDataSourceBuilder(connStr).Build();

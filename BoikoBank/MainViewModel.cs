@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Net;
 using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
@@ -20,25 +21,53 @@ namespace BoikoBank
                 OnPropertyChanged();
             }
         }
-        public ObservableCollection<Client> CombinedList { get; set; }
-        public ICommand NavigationCommand { get; }
+        private Client _selectedClient;
+        public Client SelectedClient
+        {
+            get => _selectedClient;
+            set
+            {
+                _selectedClient = value;
+                OnPropertyChanged(nameof(SelectedClient));
+            }
+        }
 
+        private Client _newClient = new Client();
+        public Client NewClient
+        {
+            get => _newClient;
+            set
+            {
+                _newClient = value;
+                OnPropertyChanged(nameof(NewClient));
+            }
+        }
+
+        // Переменная для отслеживания режима: создание нового или редактирование существующего
+        //private bool _isEditMode;
+        public ObservableCollection<Client> ClientList { get; set; }
+        public ICommand NavigationCommand { get; }
+        public RelayCommand AddClientCommand { get; private set; }
+        public RelayCommand EditClientCommand { get; private set; }
+        public RelayCommand SaveClientCommand { get; private set; }
         public MainViewModel()
         { 
             CurrentPage = new Page1();
-            NavigationCommand = new RelayCommand(p => Navigate(p?.ToString()));
-            CombinedList = new ObservableCollection<Client>();
-
+            NavigationCommand = new RelayCommand(p => SelectedPage(p?.ToString()));
+            ClientList = new ObservableCollection<Client>();
+            AddClientCommand = new RelayCommand(ExecuteAddClient);
+            EditClientCommand = new RelayCommand(ExecuteEditClient, CanExecuteEditClient);
+            //SaveClientCommand = new RelayCommand(ExecuteSaveClient, CanExecuteSaveClient);
             AddTestData();
         }
 
         private void AddTestData()
         {
-            CombinedList.Add(new Client(1, "Бойко", "Владислав", "2354",2134));
-            CombinedList.Add(new Client(2, "Тестов", "Тестер", "01.01.2026",23523));
+            ClientList.Add(new Client(1, "Бойко", "Владислав", "12.12.2005",213400));
+            ClientList.Add(new Client(2, "Тестов", "Тестер", "01.01.2026",23523));
         }
 
-        private void Navigate(string destination)
+        private void SelectedPage(string destination)
         {
             if (string.IsNullOrEmpty(destination)) return;
 
@@ -60,6 +89,29 @@ namespace BoikoBank
                     CurrentPage = new Page5 { DataContext = this }; 
                     break;
             }
+        }
+
+        private bool CanExecuteEditClient(object parameter)
+        {
+            return SelectedClient != null;
+        }
+
+        private void ExecuteAddClient(object parameter)
+        {
+            //_isEditMode = false;
+            NewClient = new Client();
+            var clientWindow = new ClientAddWindow();
+            clientWindow.DataContext = this;
+            clientWindow.ShowDialog();
+        }
+
+        private void ExecuteEditClient(object parameter)
+        {
+            //_isEditMode = false;
+            NewClient = new Client();
+            var clientWindow = new ClientEditWindow();
+            clientWindow.DataContext = this;
+            clientWindow.ShowDialog();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

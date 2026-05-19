@@ -8,7 +8,7 @@
         public string DataR { get; set; }
         public decimal Balance { get; set; }
 
-        public Client(int id, string lastName, string firstName, string data, decimal balance = 0)
+        public Client(int id=0, string lastName="", string firstName ="", string data = "", decimal balance = 0)
         {
             Id = id;
             FirstName = firstName;

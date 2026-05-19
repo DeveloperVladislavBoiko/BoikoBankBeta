@@ -43,8 +43,6 @@ namespace BoikoBank
             }
         }
 
-        // Переменная для отслеживания режима: создание нового или редактирование существующего
-        //private bool _isEditMode;
         public ObservableCollection<Client> ClientList { get; set; }
         public ICommand NavigationCommand { get; }
         public RelayCommand AddClientCommand { get; private set; }
@@ -98,7 +96,6 @@ namespace BoikoBank
 
         private void ExecuteAddClient(object parameter)
         {
-            //_isEditMode = false;
             NewClient = new Client();
             var clientWindow = new ClientAddWindow();
             clientWindow.DataContext = this;
@@ -107,7 +104,6 @@ namespace BoikoBank
 
         private void ExecuteEditClient(object parameter)
         {
-            //_isEditMode = false;
             NewClient = new Client();
             var clientWindow = new ClientEditWindow();
             clientWindow.DataContext = this;

@@ -79,7 +79,7 @@ namespace BoikoBank
 
             cmd.Parameters.AddWithValue("@FirstName", client.FirstName);
             cmd.Parameters.AddWithValue("@LastName", client.LastName);
-            cmd.Parameters.AddWithValue("@BirthDate", client.DataR);
+            cmd.Parameters.AddWithValue("@BirthDate", client.DateOfBirth);
             cmd.Parameters.AddWithValue("@Balance", client.Balance);
 
             client.Id = (int)await cmd.ExecuteScalarAsync();

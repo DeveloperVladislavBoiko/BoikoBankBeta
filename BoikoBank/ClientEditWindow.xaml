@@ -25,9 +25,27 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Text="Редактирвание"
-                   FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Text="Редактирование"
+                FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
+        <StackPanel Margin="20" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="1" Grid.RowSpan="5">
+            <TextBlock Text="Имя:" Margin="0,0,0,5"/>
+            <TextBox Text="{Binding NewClient.FirstName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15"/>
 
+            <TextBlock Text="Фамилия:" Margin="0,0,0,5"/>
+            <TextBox Text="{Binding NewClient.LastName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,20"/>
+
+            <TextBlock Text="Дата рождения:" Margin="0,0,0,5"/>
+            <TextBox Text="{Binding NewClient.DataOfBirth, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,20"/>
+
+            <TextBlock Text="Баланс:" Margin="0,0,0,5"/>
+            <TextBox Text="{Binding NewClient.Balanse, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,20"/>
+
+        </StackPanel>
+        <Button Content="Записать" Margin="2,2,2,2" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="3"
+         Command="{Binding SaveClientCommand}" 
+         CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" 
+         Height="30"/>
     </Grid>
+    
 </Window>
